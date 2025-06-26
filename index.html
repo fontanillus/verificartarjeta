@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validar tarjeta de crédito</title>
+    <link rel="stylesheet" href="./css/estilos.css">
+    <link rel="shortcut icon" href="img/tarjeta.png" type="image/x-icon">
+</head>
+<!--Algoritmo de Luhn-->
+<!--Las tarjetas de crédito usan el Algoritmo de Luhn, ampliamente utilizado en la industria de tarjetas de crédito, sistemas de identificación, y otros campos donde se requiere validación de números. Estos métodos ayudan a evitar errores de digitación y detectar posibles fraudes. El procedimiento es el siguiente:
+Duplicar los dígitos del número de la tarjeta en posiciones alternas, comenzando por la penúltima ( de derecha a izquierda ).
+Si el resultado de esta duplicación es mayor a 9, se reduce a un dígito. Es decir, para el número de tarjeta en pantalla 4000001234567899 se haría lo siguiente:
+4	0	0	0	0	0	1	2	3	4	5	6	7	8	9	9
+8	0	0	0	0	0	2	2	6	4	10	6	14	8	18	9
+8	0	0	0	0	0	2	2	6	4	1	6	5	8	9	9
+Sumar todos los valores y ajustar a la siguiente decena superior.
+8+	0+	0+	0+	0+	0+	2+	2+	6+	4+	1+	6+	5+	8+	9+	9=	54
+La siguiente decena superior al número 54 es el número 60.
+El número que falta para llegar a esa decena es el dígito de control 60 - 54 = 6, el cual debe ser igual al último dígito de la tarjeta de crédito.
+En el caso del ejemplo, el último dígito de la tarjeta es 9 y el dígito de control es 6, con lo cual la tarjeta es inválida. La tarjeta 4532015112830360 en cambio, es válida.-->
+
+<body>
+    <div id="tarjeta" class="posicion">
+        <form onsubmit="return false;">
+            <h1>¿Quieres saber si una Tarjeta de Crédito es válida?</h1>
+            <p>
+                <label for="credito">Escribe el número de tarjeta de crédito que quieras verificar:</label>
+                <input type="text" id="credito" placeholder="Número de tarjeta crédito" maxlength="19">
+                <button type="button" onclick="verificarTarjeta()">Verificar</button>
+            </p>
+            <p id="resultadoTarjeta"></p>
+
+            <p>
+                <img src="./img/tarjeta.png" alt="foto">
+            </p>
+        </form>
+    </div>
+    <script>
+        function verificarTarjeta() {
+            // Obtiene el valor ingresado en el input con id "credito" y elimina espacios al inicio y final
+            const input = document.getElementById("credito").value.trim();
+            // Obtiene el elemento donde se mostrará el resultado
+            const resultado = document.getElementById("resultadoTarjeta");
+
+            // Valida que la cadena contenga solo números (sin letras ni caracteres especiales)
+            if (!/^\d+$/.test(input)) {
+                resultado.innerHTML = "Por favor ingresa el número de la tarjeta de crédito.";
+                resultado.style.color ="white"
+                return; // Termina la función si no es válido
+            }
+
+            // Convierte el número en un arreglo de dígitos invertido (de derecha a izquierda)
+            const digitos = input.split('').reverse().map(Number);
+            let suma = 0;
+
+            // Recorre cada dígito con su índice
+            for (let i = 0; i < digitos.length; i++) {
+                let digito = digitos[i];
+                // En las posiciones impares (contando desde 0), multiplica el dígito por 2
+                if (i % 2 === 1) {
+                    digito *= 2;
+                    // Si el resultado es mayor que 9, resta 9 (equivale a sumar los dígitos)
+                    if (digito > 9) digito -= 9;
+                }
+                // Suma el dígito modificado o sin modificar a la variable suma
+                suma += digito;
+            }
+
+            // Si la suma total es múltiplo de 10, la tarjeta es válida
+            if (suma % 10 === 0) {
+                resultado.innerHTML = "La tarjeta es válida.";
+                resultado.style.color = "white";
+            } else {
+                resultado.innerHTML = "La tarjeta NO es válida.";
+                resultado.style.color = "white";
+
+            }
+
+            // Imprime en la consola para depurar
+            console.log("Tarjeta de credito");
+            console.log("Resultado:", resultado.innerHTML);
+        }
+
+    </script>
+
+
+</body>
+
+</html>

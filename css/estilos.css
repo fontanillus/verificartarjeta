@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap');
+
+body {
+    width: 100%;
+  font-family: "DM Serif Text", serif;
+  height: auto;
+  background-color: darkviolet
+}
+
+h1 {
+  font-weight: bold;
+  text-align: center;
+}
+
+#tarjeta {
+  width: 90%;
+  height: auto;
+  font-family: "DM Serif Text", serif;
+  color: yellow;
+  text-align: left; /* Aplica alineación a todo el contenedor */
+  margin: 0 auto; /* Centra horizontalmente si quieres */
+}
+
+/* Inputs y botones dentro de #ejercicio3 */
+#tarjeta input,
+#tarjeta button {
+  border-radius: 5px;
+  border: 5px solid yellow;
+  padding: 5px;
+  padding-right: 20px;
+  padding-left: 10px;
+  text-align: left;
+  color: black;
+  background-color: white;
+}
+
+/* Botón con margen a la izquierda para separación */
+#tarjeta button {
+  margin-left: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* Titulos y párrafos centrados dentro de #ejercicio3 */
+#tarjeta h1,
+#tarjeta p {
+  text-align: center;
+}
+
+/* Clase para centrar elementos con ancho fijo */
+.posicion {
+  width: 300px;
+  margin: 0 auto;
+}
+
+    
+   
