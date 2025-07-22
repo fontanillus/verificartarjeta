@@ -1,57 +1,136 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap');
 
-body {
-    width: 100%;
-  font-family: "DM Serif Text", serif;
-  height: auto;
-  background-color: darkviolet
+/* Variables CSS */
+:root {
+  --color-bg: darkviolet;
+  --color-text: yellow;
+  --color-border: yellow;
+  --color-input-bg: white;
+  --color-input-text: black;
+  --border-radius: 5px;
+  --padding-base: 5px;
+  --padding-left: 10px;
+  --padding-right: 20px;
 }
 
+/* Reglas generales */
+body {
+  width: 100%;
+  font-family: "DM Serif Text", serif;
+  height: auto;
+  background-color: var(--color-bg);
+}
+
+/* Títulos */
 h1 {
   font-weight: bold;
   text-align: center;
 }
 
+/* Contenedor principal */
 #tarjeta {
   width: 90%;
   height: auto;
   font-family: "DM Serif Text", serif;
-  color: yellow;
-  text-align: left; /* Aplica alineación a todo el contenedor */
-  margin: 0 auto; /* Centra horizontalmente si quieres */
+  color: var(--color-text);
+  margin: 0 auto;
 }
 
-/* Inputs y botones dentro de #ejercicio3 */
+/* Inputs y botones */
 #tarjeta input,
 #tarjeta button {
-  border-radius: 5px;
-  border: 5px solid yellow;
-  padding: 5px;
-  padding-right: 20px;
-  padding-left: 10px;
+  border-radius: var(--border-radius);
+  border: 5px solid var(--color-border);
+  padding: var(--padding-base);
+  padding-left: var(--padding-left);
+  padding-right: var(--padding-right);
+  color: var(--color-input-text);
+  background-color: var(--color-input-bg);
   text-align: left;
-  color: black;
-  background-color: white;
 }
 
-/* Botón con margen a la izquierda para separación */
+/* Botón con margen extra */
 #tarjeta button {
   margin-left: 20px;
   padding-left: 5px;
   padding-right: 5px;
 }
 
-/* Titulos y párrafos centrados dentro de #ejercicio3 */
+/* Centrado de títulos y párrafos dentro del contenedor */
 #tarjeta h1,
 #tarjeta p {
   text-align: center;
 }
 
-/* Clase para centrar elementos con ancho fijo */
+/* Clase de centrado para cualquier elemento de ancho fijo */
 .posicion {
   width: 300px;
   margin: 0 auto;
 }
 
-    
-   
+/* Estilos base (escritorio y general) ya aplicados arriba */
+
+/* Tablets: vertical y horizontal (≥ 600px y ≤ 1024px) */
+@media screen and (min-width: 600px) and (max-width: 1024px) {
+  #tarjeta {
+    width: 95%;
+    font-size: 1rem;
+  }
+
+  .posicion {
+    width: 90%;
+  }
+
+  #tarjeta input,
+  #tarjeta button {
+    font-size: 1rem;
+    padding: 8px;
+  }
+}
+
+/* Móviles en orientación vertical (≤ 599px) */
+@media screen and (max-width: 599px) and (orientation: portrait) {
+  #tarjeta {
+    width: 95%;
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  .posicion {
+    width: 100%;
+  }
+
+  #tarjeta input,
+  #tarjeta button {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+
+  #tarjeta button {
+    margin-left: 0;
+  }
+}
+
+/* Móviles en orientación horizontal (≤ 899px de ancho) */
+@media screen and (max-width: 899px) and (orientation: landscape) {
+  #tarjeta {
+    width: 90%;
+    font-size: 1rem;
+  }
+
+  .posicion {
+    width: 90%;
+  }
+
+  #tarjeta input,
+  #tarjeta button {
+    font-size: 1rem;
+    padding: 6px 10px;
+  }
+
+  #tarjeta button {
+    margin-left: 10px;
+  }
+}
